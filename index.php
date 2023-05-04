@@ -40,7 +40,10 @@ $categories = ['name', 'description', 'parking', 'vote', 'distance to center'];
 $filteredHotels = $hotels;
 
 if (!empty($_POST['parking'])) {
-  $filteredHotels = [];
+  $filteredHotels = ($_POST['parking'] == 'all-parking') ? $hotels : array_filter($hotels, function($hotel) {
+    return ($_POST['parking'] == 'yes-parking') ? $hotel['parking'] : !$hotel['parking'];
+  });
+  /* $filteredHotels = [];
   if ($_POST['parking'] == 'all-parking') {
     $filteredHotels = $hotels;
   } elseif ($_POST['parking'] == 'yes-parking') {
@@ -55,7 +58,7 @@ if (!empty($_POST['parking'])) {
         $filteredHotels[] = $hotel;
       }
     }
-  }
+  } */
   if ($_POST['vote'] != 'all-vote') {
     $filtedByVote = array_filter($hotels, function($val) {
       return $val['vote'] == $_POST['vote'];
