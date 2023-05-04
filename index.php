@@ -60,10 +60,10 @@ if (!empty($_POST['parking'])) {
     }
   } */
   if ($_POST['vote'] != 'all-vote') {
-    $filtedByVote = array_filter($hotels, function($val) {
+    $filteredHotels = array_filter($filteredHotels, function($val) {
       return $val['vote'] == $_POST['vote'];
     });
-    $filteredHotels = $filtedByVote;
+    /* $filteredHotels = $filtedByVote; */
   }
 }
 
