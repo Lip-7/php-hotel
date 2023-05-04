@@ -36,8 +36,35 @@ $hotels = [
     'distance_to_center' => 50
   ],
 ];
-$categories = ['name', 'description', 'parking', 'vote', 'distance_to_center'];
+$categories = ['name', 'description', 'parking', 'vote', 'distance to center'];
 $filteredHotels = $hotels;
+
+if (!empty($_POST['parking'])) {
+  $filteredHotels = [];
+  if ($_POST['parking'] == 'all-parking') {
+    $filteredHotels = $hotels;
+  } elseif ($_POST['parking'] == 'yes-parking') {
+    foreach ($hotels as $hotel) {
+      if ($hotel['parking']) {
+        $filteredHotels[] = $hotel;
+      }
+    }
+  } else {
+    foreach ($hotels as $hotel) {
+      if (!$hotel['parking']) {
+        $filteredHotels[] = $hotel;
+      }
+    }
+  }
+  if ($_POST['vote'] != 'all-vote') {
+    $filtedByVote = array_filter($hotels, function($val) {
+      return $val['vote'] == $_POST['vote'];
+    });
+    $filteredHotels = $filtedByVote;
+  }
+}
+
+
 ?>
 
 
@@ -56,6 +83,24 @@ $filteredHotels = $hotels;
 </head>
 
 <body class="w-full h-screen relative">
+  <form action="<?php echo $_SERVER['PHP_SELF']?>" class=" absolute top-5 left-10" method="POST">
+    <label for="parkingSelect" class=" text-white">Filter for parking:</label>
+    <select name="parking" id="parkingSelect" class=" rounded-lg cursor-pointer px-3 py-1 mr-3">
+      <option value="all-parking" class=" cursor-pointer">All</option>
+      <option value="yes-parking" class=" cursor-pointer">Yes</option>
+      <option value="no-parking" class=" cursor-pointer">No</option>
+    </select>
+    <label for="voteSelect" class=" text-white">Filter for vote:</label>
+    <select name="vote" id="voteSelect" class=" rounded-lg cursor-pointer px-3 py-1 mr-3">
+      <option value="all-vote" class=" cursor-pointer">All</option>
+      <option value="1" class=" cursor-pointer">1</option>
+      <option value="2" class=" cursor-pointer">2</option>
+      <option value="3" class=" cursor-pointer">3</option>
+      <option value="4" class=" cursor-pointer">4</option>
+      <option value="5" class=" cursor-pointer">5</option>
+    </select>
+    <button class="px-4 py-2 font-semibold text-sm bg-orange-600 text-white rounded-full shadow-sm" type="submit">Search</button>
+  </form>
   <div class="tableWrap absolute bottom-4 left-10 p-5">
     <table class="items-center bg-transparent w-full border-collapse text-center text-white">
       <thead>
