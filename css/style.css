@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-image: url(../img/4-hotel-vacanze-italiane.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+.wrapper{
+    background-color: yellow;
+}
+.tableWrap{
+    backdrop-filter: blur(50px);
+}
