@@ -40,6 +40,7 @@ $categories = array_keys($hotels[0]);
 /* $categories = ['name', 'description', 'parking', 'vote', 'distance to center']; */
 $filteredHotels = $hotels;
 
+/* Ciao Samuel o Marco, vi chiedo scusa per il dodice qui sotto..*/
 if (!empty($_POST['parking'])) {
   $filteredHotels = ($_POST['parking'] == 'all-parking') ? $hotels : array_filter($hotels, function($hotel) {
     return ($_POST['parking'] == 'yes-parking') ? $hotel['parking'] : !$hotel['parking'];
