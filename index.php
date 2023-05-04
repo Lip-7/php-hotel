@@ -1,39 +1,39 @@
 <?php
 $hotels = [
   [
-      'name' => 'Hotel Belvedere',
-      'description' => 'Hotel Belvedere Descrizione',
-      'parking' => true,
-      'vote' => 4,
-      'distance_to_center' => 10.4
+    'name' => 'Hotel Belvedere',
+    'description' => 'Hotel Belvedere Descrizione',
+    'parking' => true,
+    'vote' => 4,
+    'distance_to_center' => 10.4
   ],
   [
-      'name' => 'Hotel Futuro',
-      'description' => 'Hotel Futuro Descrizione',
-      'parking' => true,
-      'vote' => 2,
-      'distance_to_center' => 2
+    'name' => 'Hotel Futuro',
+    'description' => 'Hotel Futuro Descrizione',
+    'parking' => true,
+    'vote' => 2,
+    'distance_to_center' => 2
   ],
   [
-      'name' => 'Hotel Rivamare',
-      'description' => 'Hotel Rivamare Descrizione',
-      'parking' => false,
-      'vote' => 1,
-      'distance_to_center' => 1
+    'name' => 'Hotel Rivamare',
+    'description' => 'Hotel Rivamare Descrizione',
+    'parking' => false,
+    'vote' => 1,
+    'distance_to_center' => 1
   ],
   [
-      'name' => 'Hotel Bellavista',
-      'description' => 'Hotel Bellavista Descrizione',
-      'parking' => false,
-      'vote' => 5,
-      'distance_to_center' => 5.5
+    'name' => 'Hotel Bellavista',
+    'description' => 'Hotel Bellavista Descrizione',
+    'parking' => false,
+    'vote' => 5,
+    'distance_to_center' => 5.5
   ],
   [
-      'name' => 'Hotel Milano',
-      'description' => 'Hotel Milano Descrizione',
-      'parking' => true,
-      'vote' => 2,
-      'distance_to_center' => 50
+    'name' => 'Hotel Milano',
+    'description' => 'Hotel Milano Descrizione',
+    'parking' => true,
+    'vote' => 2,
+    'distance_to_center' => 50
   ],
 ];
 $categories = ['name', 'description', 'parking', 'vote', 'distance_to_center'];
@@ -56,15 +56,15 @@ $filteredHotels = $hotels;
 </head>
 
 <body class="w-full h-screen relative">
-  <div class="tableWrap absolute bottom-4 left-4 p-5">
-    <table class="items-center bg-transparent w-full border-collapse ">
+  <div class="tableWrap absolute bottom-4 left-10 p-5">
+    <table class="items-center bg-transparent w-full border-collapse text-center text-white">
       <thead>
         <tr>
-          <?php foreach($categories as $categ) {?>
+          <?php foreach ($categories as $categ) { ?>
             <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-black text-left">
               <?php echo $categ ?>
             </th>
-            <?php }?>
+          <?php } ?>
           <!-- <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
             Visitors
           </th>
@@ -78,7 +78,25 @@ $filteredHotels = $hotels;
       </thead>
 
       <tbody>
-        <tr>
+        <?php foreach ($filteredHotels as $hotel) { ?>
+          <tr>
+            <?php foreach ($hotel as $key => $info) { ?>
+              <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                <?php if ($key != 'parking') {
+                  echo $info;
+                } else {
+                  if ($info == true) {
+                    echo "Yes";
+                  } else {
+                    echo "No";
+                  }
+                }
+                ?>
+              </td>
+            <?php } ?>
+          </tr>
+        <?php } ?>
+        <!-- <tr>
           <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
             /argon/
           </th>
@@ -152,7 +170,7 @@ $filteredHotels = $hotels;
             <i class="fas fa-arrow-down text-red-500 mr-4"></i>
             46,53%
           </td>
-        </tr>
+        </tr> -->
       </tbody>
 
     </table>

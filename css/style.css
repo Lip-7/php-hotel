@@ -8,10 +8,12 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
+    background-position: top -81px right 0px;
 }
 .wrapper{
     background-color: yellow;
 }
 .tableWrap{
     backdrop-filter: blur(50px);
+    text-shadow: 0px 0px 5px black;
 }
