@@ -36,7 +36,8 @@ $hotels = [
     'distance_to_center' => 50
   ],
 ];
-$categories = ['name', 'description', 'parking', 'vote', 'distance to center'];
+$categories = array_keys($hotels[0]);
+/* $categories = ['name', 'description', 'parking', 'vote', 'distance to center']; */
 $filteredHotels = $hotels;
 
 if (!empty($_POST['parking'])) {
